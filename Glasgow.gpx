@@ -15,7 +15,6 @@ http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd http://www.viewranger.
 <cmt><![CDATA[<im>http://files.viewranger.com/image/5f65d040e226bc11cdcec401faa2cf28.jpg</im><br> Take the main station exit (straight ahead from the ticket gates) to Gordon Street.]]></cmt>
 <sym><![CDATA[vr_flaggreen]]></sym>
 </trkpt>
-
 <trkpt lat="55.858379" lon="-4.256923">
 <name><![CDATA[Jamaica Street]]></name>
 <cmt><![CDATA[<im>http://files.viewranger.com/image/e3cdf9ac5d74c51e1669e2983137b5eb.jpg</im><br> Still walking your bike, cross Argyll Street and continue down Jamaica Street on the other side. Stay on the right side of Jamaica Street.]]></cmt>
@@ -31,7 +30,6 @@ http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd http://www.viewranger.
 <cmt><![CDATA[<im>http://files.viewranger.com/image/4640e8915851cf52f5771f544a1c2441.jpg</im><br> Turn right on the pavement along Broomielaw Street. You can start cycling! This joins the cycle path a few metres along.]]></cmt>
 <sym><![CDATA[vr_rightturnblack]]></sym>
 </trkpt>
-
 <trkpt lat="55.856426" lon="-4.259648">
 <name><![CDATA[George V Bridge]]></name>
 <cmt><![CDATA[<im>http://files.viewranger.com/image/7e482927662df79cec7d0030223a71aa.jpg</im><br> Cross over at the signal crossing.]]></cmt>
