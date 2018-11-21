@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LEGGO</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+</head>
+<body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+             //$("#file-input").change(function(){
+               // var reader = new FileReader();
+              
+            //reader.onload = function(e){
+                 // var text = reader.result;
+                var rawFile = new XMLHttpRequest();
+                rawFile.open("GET", "Glasgow.gpx", false);
+                //var text = rawFile.responseText
+                var text;
+                
+                rawFile.onreadystatechange = function ()
+                {
+                    if(rawFile.readyState === 4)
+                    {
+                        if(rawFile.status === 200 || rawFile.status == 0)
+                        {
+                            text = rawFile.responseText;
+                            //alert(text);
+                        }
+                    }
+                }
+                rawFile.send(null);
+                
+                var gpxDoc = $.parseXML(text);
+                var $xml = $(gpxDoc);
+                //alert($xml.find('name').text());
+                
+                var alerted = false;
+                
+                $xml.find('trkpt').each(function(){
+                    var lat = $(this).attr('lat');
+                    var lon = $(this).attr('lon');
+                    
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(lat, lon),
+                        map: map
+                        
+                    });
+                });
+            //};
+              
+            //reader.readAsText(this.files[0]);
+           });
+        </script>
+
+        
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">LEGGO</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="list.html">Theme</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="Map.html">Map</a>
+                <span class="sr-only">(current)</span>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+ <!-- End Navigation bar -->
+
+<!--<section class="map">-->
+    <div id="map"></div> 
+   <!-- <input id="file-input" type="file" name="gpxfile">-->
+<!--</section>-->  
+
+<!--user feedback-->
+<span id="feedback">
+<div class="container mt-1">
+        <div class="media border p-1">
+          <img src="Pic/img_avatar3.png" alt="John Doe" class="mr-1 mt-1 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>John Doe <small><i>Posted on Nov 14, 2018</i></small></h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>      
+        </div>
+    </div>
+</div>
+
+<div class="container mt-1">
+        <div class="media border p-1">
+          <img src="Pic/img_avatar1.png" alt="Mr Mr" class="mr-1 mt-1 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>Joesph <small><i>Posted on Nov 14, 2018</i></small></h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>      
+        </div>
+    </div>
+</div>
+
+<div class="container mt-1">
+        <div class="media border p-1">
+          <img src="Pic/img_avatar5.png" alt="Jane" class="mr-1 mt-1 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>Jane <small><i>Posted on Nov 14, 2018</i></small></h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>      
+        </div>
+    </div>
+</div>
+</span>
+<!--comment textbox-->
+<div class="container" id="txtbox" >
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr">
+
+        <div id="avatarSelection">
+          <label>Avatar:</label>
+          <label class="block">
+            <input type="radio" name="displayPic" value="1" checked>
+            <img src="Pic/img_avatar1.png" class="avatar">
+          </label>
+          
+          <label class="block">
+            <input type="radio" name="displayPic" value="2">
+            <img src="Pic/img_avatar3.png" class="avatar">
+          </label>
+
+          <label class="block">
+            <input type="radio" name="displayPic" value="3">
+            <img src="Pic/img_avatar5.png" class="avatar">
+          </label>
+        </div>
+
+    <div class="form-group">
+            <label for="comment" >Comment:</label>
+            <textarea class="form-control" rows="5" id="comments" name="text"></textarea>
+    </div>
+            <button type="button" class="btn btn-info btn-lg" onclick="submit()">Submit</button>
+</div>
+
+
+<!-- *******************************On Submit button click************************************** -->
+<script>
+  function submit() {
+    //Create an input type dynamically.   
+    var div = document.createElement("div"); // Container
+    var div2 = document.createElement("div"); // Media
+    var image = document.createElement("img"); // profile icon
+    var div3 = document.createElement("div"); // Media body
+    var name = document.createElement("h4"); // name
+    var comment = document.createElement("p") // comment
+
+    var inputName = document.getElementById("usr"); // Get input name
+    var avatars = document.getElementById("avatarSelection") // Get avatar selected
+    var inputComment = document.getElementById("comments") // Get input comment
+
+    //Assign different attributes to the Container.
+    //div.class = "container mt-1"; // Really? You want the default value to be the type string?
+    div.classList.add("container");
+    div.classList.add("mt-1");
+
+    //Assign different attributes to the Media
+    //div2.class = "media border p-1";
+    div2.classList.add("media");
+    div2.classList.add("border");
+    div2.classList.add("p-1");
+
+    //Assign different attributes to Image
+    var radios = avatars.getElementsByTagName('input');
+    var images = avatars.getElementsByTagName('img');
+    var value;
+    var src;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].type === 'radio' && radios[i].checked) {
+            // get value, set checked flag or do whatever you need to
+            value = images[radios[i].value-1].src;
+        }
+    }
+    image.src = value; //"Pic/img_avatar5.png";
+    image.alt = inputName.innerHtml; // get name
+    //image.class = "mr-1 mt-1 rounded-circle";
+    image.classList.add("mr-1");
+    image.classList.add("mt-1");
+    image.classList.add("rounded-circle");
+    image.style.width = "60px";
+
+    //Assign different attributes to Container body
+    //div3.class = "media-body";
+    div3.classList.add("media-body");
+
+    //Assign different attributes to display Name and date
+    var d = new Date();
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var date = months[d.getMonth()] + " " + d.getDate().toString() + ", " + d.getFullYear().toString();
+
+    var string = " Posted on " + date;
+
+    string = string.italics();
+    string = string.small();
+    name.innerHTML = inputName.value + string; // get name
+    //name.style.font = "italic small";
+    //date.style.font = "italic small";
+    
+    
+    //Assign different attributes to display Comment
+    comment.innerText = inputComment.value; //get comment
+
+    //element.onclick = function() { // Note this is a function
+    //alert("blabla");
+
+    //Append the element in page (in span).
+    var container = document.getElementById("feedback");
+
+    div.appendChild(div2);
+    div2.appendChild(image);
+    div2.appendChild(div3);
+    div3.appendChild(name);
+    div3.appendChild(comment);
+
+    container.appendChild(div);
+    reloadStylesheets()
+  };
+
+</script>
+
+<script>
+  google.maps.event.addListener(document.getElementById('map'), 'click', function() {
+
+  directionsDisplay.setMap(null);
+
+  directionsDisplay.setOptions({
+    polylineOptions: {
+      strokeColor: 'blue'
+    }
+  });
+
+  directionsDisplay.setMap(map);
+  });
+</script>
+
+<script>
+        var map;
+        function initMap() {
+             //document.getElementById('map') Original
+             map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 55.86515, lng: -4.25763},
+            zoom: 11
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbH1fTHbxGyCRDaHo81rOry27eIeVq9CE&callback=initMap"
+async defer>
+</script>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; LEGGO 2018</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+</body>
+</html>

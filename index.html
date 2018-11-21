@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>LEGGO</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/half-slider.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">LEGGO</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('http://www.1759.co.uk/images/bg_loc1.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Scottland Landscape</h3>
+            <p>This is a description for the first slide.</p>
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://beyondedinburgh.co.uk/wp-content/uploads/2018/05/ABHeader.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Historical Building</h3>
+            <p>This is a description for the second slide.</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('http://www.hotelstravelle.com/images/birmingham1.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Modern Glasgow</h3>
+            <p>This is a description for the third slide.</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <section class="py-5">
+    <div class="container">
+      <h1>Welcome to LEGGO</h1>
+      <p>This is a web application that hopes to allow visitors as well as locals to discover Glasgow on a deeper
+        level.
+        It is designed to cater to locals and visitors whom are free to share their memories of their favourite hangout
+        spots.
+        They can denote waypoints in which they can write short description about their experiences.
+        Users of the application can also view different routes.
+        Users can also give their own feedback about their experience or suggest a better route. Based on the voting
+        system,
+        we can ensure quality comments and routes being on the top of the list.
+      </p>
+
+      <!--for card themes-->
+      <div class="row">
+        <div class="col-sm-4 my-4">
+          <div class=" card bg-dark text-white hover" onclick="themeClick()">
+            <img class="card-img " src="Pic/coffee shop.jpg" alt="Card image" style="width:347.5px;height:250px">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Cafes</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 my-4">
+          <div class="card bg-dark text-white hover" onclick="resClick()">
+            <img class="card-img " src="Pic/restaurant.jpg" alt="Card image" style="width:347.5px;height:250px">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Restaurants</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 my-4">
+          <div class="card bg-dark text-white hover" onclick="shopClick()">
+            <img class="card-img" src="Pic/canpark.jpg" alt="Card image" style="width:347.5px;height:250px">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Shopping Areas</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- row -->
+
+      <!--for card themes-->
+      <div class="row">
+        <div class="col-sm-4 my-4">
+          <div class=" card bg-dark text-white hover" onclick="sceneryClick()">
+            <img class="card-img" src="Pic/2.jpg" alt="Card image" style="width:347.5px;height:250px">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Scenery</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 my-4">
+          <div class="card bg-dark text-white hover" onclick="historicalClick()">
+            <img class="card-img" src="Pic/history.jpg" alt="Card image" style="width:347.5px;height:250px">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Historical Sites</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 my-4">
+          <div class="card bg-dark text-white hover" onclick="artClick()">
+            <img class="card-img" src="Pic/4.jpg" alt="Card image" style="width:347.5px;height:250px">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Arts</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- row -->
+
+      <script>
+        function themeClick(){
+          window.location.href = "coffeeList.html";
+        }
+
+        function resClick(){
+          window.location.href = "restaurantsList.html";
+        }
+
+        function shopClick(){
+          window.location.href = "shoppingAreaList.html";
+        }
+
+        function sceneryClick(){
+          window.location.href = "sceneryList.html";
+        }
+
+        function historicalClick(){
+          window.location.href = "Restaurants.html";
+        }
+
+        function artClick(){
+          window.location.href = "Restaurants.html";
+        }
+      </script>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
