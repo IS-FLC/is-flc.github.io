@@ -62,8 +62,8 @@
 /*MAP HTML*/
 #map {
   height: 50%;
-  width: 50%;
-  margin-left: 25%;
+  width: 80%;
+  margin-left: 15%;
   margin-top: 10%;
   margin-bottom: 5%;
 }
@@ -5137,6 +5137,7 @@ input[type="button"].btn-block {
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
+  margin-top: 50px;
 }
 
 .list-group-item-action {
