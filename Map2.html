@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LEGGO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbH1fTHbxGyCRDaHo81rOry27eIeVq9CE&callback=initMap" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">LEGGO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="coffeeList.html">Theme</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="Map.html">Map</a>
+              <span class="sr-only">(current)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navigation bar -->
+
+    <!-- Place map here -->
+    <div id="map"></div>
+
+    <!-- User feedback -->
+    <span id="feedback">
+      <div class="container mt-1">
+        <div class="media border p-1">
+          <img src="Pic/img_avatar3.png" alt="John Doe" class="mr-1 mt-1 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>John Doe <small><i>Posted on Nov 14, 2018</i></small></h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>      
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt-1">
+        <div class="media border p-1">
+          <img src="Pic/img_avatar1.png" alt="Mr Mr" class="mr-1 mt-1 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>Joesph <small><i>Posted on Nov 14, 2018</i></small></h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>      
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt-1">
+        <div class="media border p-1">
+          <img src="Pic/img_avatar5.png" alt="Jane" class="mr-1 mt-1 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>Jane <small><i>Posted on Nov 14, 2018</i></small></h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>      
+          </div>
+        </div>
+      </div>
+    </span>
+
+    <!--comment textbox-->
+    <div class="container" id="txtbox" >
+      <label for="usr">Name:</label>
+      <input type="text" class="form-control" id="usr">
+
+      <div id="avatarSelection">
+        <label>Avatar:</label>
+        <label class="block">
+          <input type="radio" name="displayPic" value="1" checked>
+          <img src="Pic/img_avatar1.png" class="avatar">
+        </label>
+        
+        <label class="block">
+          <input type="radio" name="displayPic" value="2">
+          <img src="Pic/img_avatar3.png" class="avatar">
+        </label>
+
+        <label class="block">
+          <input type="radio" name="displayPic" value="3">
+          <img src="Pic/img_avatar5.png" class="avatar">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="comment" >Comment:</label>
+        <textarea class="form-control" rows="5" id="comments" name="text"></textarea>
+      </div>
+        <button type="button" class="btn btn-info btn-lg" onclick="submit()">Submit</button>
+    </div>
+
+
+    <!-- *******************************On Submit button click************************************** -->
+    <script>
+      function submit() {
+        //Create an input type dynamically.   
+        var div = document.createElement("div"); // Container
+        var div2 = document.createElement("div"); // Media
+        var image = document.createElement("img"); // profile icon
+        var div3 = document.createElement("div"); // Media body
+        var name = document.createElement("h4"); // name
+        var comment = document.createElement("p") // comment
+
+        var inputName = document.getElementById("usr"); // Get input name
+        var avatars = document.getElementById("avatarSelection") // Get avatar selected
+        var inputComment = document.getElementById("comments") // Get input comment
+
+        //Assign different attributes to the Container.
+        div.classList.add("container");
+        div.classList.add("mt-1");
+
+        //Assign different attributes to the Media
+        div2.classList.add("media");
+        div2.classList.add("border");
+        div2.classList.add("p-1");
+
+        //Assign different attributes to Image
+        var radios = avatars.getElementsByTagName('input');
+        var images = avatars.getElementsByTagName('img');
+        var value;
+        var src;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].type === 'radio' && radios[i].checked) {
+                // get value, set checked flag or do whatever you need to
+                value = images[radios[i].value-1].src;
+            }
+        }
+        image.src = value; //"Pic/img_avatar5.png";
+        image.alt = inputName.innerHtml; // get name
+        image.classList.add("mr-1");
+        image.classList.add("mt-1");
+        image.classList.add("rounded-circle");
+        image.style.width = "60px";
+
+        //Assign different attributes to Container body
+        div3.classList.add("media-body");
+
+        //Assign different attributes to display Name and date
+        var d = new Date();
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var date = months[d.getMonth()] + " " + d.getDate().toString() + ", " + d.getFullYear().toString();
+
+        var string = " Posted on " + date;
+
+        string = string.italics();
+        string = string.small();
+        name.innerHTML = inputName.value + string; // get name
+        
+        
+        //Assign different attributes to display Comment
+        comment.innerText = inputComment.value; //get comment
+
+        //Append the element in page (in span).
+        var container = document.getElementById("feedback");
+
+        div.appendChild(div2);
+        div2.appendChild(image);
+        div2.appendChild(div3);
+        div3.appendChild(name);
+        div3.appendChild(comment);
+        container.appendChild(div);
+      };
+
+    </script>
+
+
+    <!-- Init Map/ Populate Marker on map-->
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 55.86515, lng: -4.25763},
+        zoom: 11
+        });
+
+
+        map.addListener('click', function() {
+
+        directionsDisplay.setMap(null);
+
+        directionsDisplay.setOptions({
+          polylineOptions: {
+          strokeColor: 'blue'
+          }
+        });
+
+        directionsDisplay.setMap(map);
+        });
+        
+        // Populate map with markers
+        $(document).ready(function() {
+          var rawFile = new XMLHttpRequest();
+          rawFile.open("GET", "Glasgow.gpx", false);
+          var text;
+          
+          rawFile.onreadystatechange = function ()
+          {
+              if(rawFile.readyState === 4)
+              {
+                  if(rawFile.status === 200 || rawFile.status == 0)
+                  {
+                      text = rawFile.responseText;
+                      //alert(text);
+                  }
+              }
+          }
+          rawFile.send(null);
+          
+          var gpxDoc = $.parseXML(text);
+          var $xml = $(gpxDoc);
+          //alert($xml.find('name').text());
+          
+          var alerted = false;
+          
+          var contentArray = [];
+          var littleCafe = '<div id="content">'+
+            '<div id="littleCafe">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">The Little Cafe</h2>'+
+            '<div id="bodyContent">'+
+            '<p><b>The Little Cafe</b>, Glasgow, United Kingdom Outdoor seating, Cosy · Casual</p>'+
+            '<p>Attribution: The Little Cafe, <a href="https://www.facebook.com/thelittlecafe1">'+
+            'Facebook</a></p>'+
+            'Closes at 9PM</br>'+
+            'Address: 1361 Argyle St, Glasgow G3 8AF, UK' +
+            '</div>'+
+            '</div>';
+          
+            var coiaCafe = '<div id="content">'+
+            '<div id="coiaCafe">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Coias Cafe</h2>'+
+            '<div id="bodyContent">'+
+            '<p><b>Coias Cafe</b>, Snacks and produce in adjoining cafe and delicatessen with homemade Italian ice cream and takeaway.</p>'+
+            '<p>Attribution: Coias Cafe, <a href="http://www.coiascafe.co.uk/Desserts.pdf">'+
+            'Menu</a></p>'+
+            'Closes at 10PM</br>'+
+            'Address: 473 Duke St, Glasgow G31 1RD, UK' +
+            '</div>'+
+            '</div>';
+
+            var soulsaCafe = '<div id="content">'+
+            '<div id="soulsaCafe">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Soulsa Cafe</h2>'+
+            '<div id="bodyContent">'+
+            '<p><b>Soulsa Cafe</b>, Lovely comfy bar with great music.</p>'+
+            '<p>Attribution: Soulsa Cafe, <a href="http://soulsabar.com/">'+
+            'Website</a></p>'+
+            'Closes at 12AM</br>'+
+            'Address: 87 Glassford St, Glasgow G1 1UH, UK' +
+            '</div>'+
+            '</div>';
+
+            var cafeWander = '<div id="content">'+
+            '<div id="cafeWander">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Cafe Wander</h2>'+
+            '<div id="bodyContent">'+
+            '<p><b>Cafe Wander</b>, Cheery independent cafe serving simple breakfast and lunch menu, plus homemade burgers and cakes.</p>'+
+            '<p>Attribution: Cafe Wander, <a href="http://www.cafewander.com/">'+
+            'Website</a></p>'+
+            'Closes at 5PM</br>'+
+            'Address: 110 W George St, Glasgow G2 1QJ, UK' +
+            '</div>'+
+            '</div>';
+
+            var hyndlandCafe = '<div id="content">'+
+            '<div id="hyndlandCafe">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">The Hyndland Cafe</h2>'+
+            '<div id="bodyContent">'+
+            '<p><b>The Hyndland Cafe</b>, All-day breakfast, grills and snacks, plus tapas specials in a small cafe with outdoor tables.</p>'+
+            '<p>Attribution: The Hyndland Cafe, <a href="http://www.thehyndlandcafe.com/">'+
+            'Website</a></p>'+
+            'Closes at 5PM</br>'+
+            'Address: 96 Clarence Dr, Glasgow G12 9RN, UK' +
+            '</div>'+
+            '</div>';
+
+            var transEuropeCafe = '<div id="content">'+
+            '<div id="transEuropeCafe">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Trans-Europe Café</h2>'+
+            '<div id="bodyContent">'+
+            '<p><b>Trans-Europe Café</b>, Old bus seats and city photos decorate this small, relaxed and hip cafe with Fri-Sat evening meals.</p>'+
+            '<p>Attribution: Trans-Europe Café, <a href="http://www.transeuropecafe.co.uk/">'+
+            'Website</a></p>'+
+            'Closes at 5PM</br>'+
+            'Address: Trans-Europe Café, 25 Parnie St, Glasgow G1 5RJ, United Kingdom' +
+            '</div>'+
+            '</div>';
+
+          var littleCafeWindow = new google.maps.InfoWindow({
+            content: littleCafe
+          });
+
+          var CoiasCafeWindow = new google.maps.InfoWindow({
+            content: coiaCafe
+          });
+
+          var soulsaCafeWindow = new google.maps.InfoWindow({
+            content: soulsaCafe
+          });
+
+          var cafeWanderWindow = new google.maps.InfoWindow({
+            content: cafeWander
+          });
+
+          var hyndlandCafeWindow = new google.maps.InfoWindow({
+            content: hyndlandCafe
+          });
+
+          var transEuropeCafeWindow = new google.maps.InfoWindow({
+            content: transEuropeCafe
+          });
+
+          // Add to array
+          contentArray.push(littleCafeWindow);
+          contentArray.push(CoiasCafeWindow);
+          contentArray.push(soulsaCafeWindow);
+          contentArray.push(cafeWanderWindow);
+          contentArray.push(hyndlandCafeWindow);
+          contentArray.push(transEuropeCafeWindow);
+
+          // marker array
+          var markerArray = [];
+                    
+          var count = 0;
+          $xml.find('trkpt').each(function(){
+            var lat = $(this).attr('lat');
+            var lon = $(this).attr('lon');
+            
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lon),
+                map: map
+            });
+
+            markerArray.push(marker);
+            marker.addListener('click', function() {
+            //alert(contentArray[count].open(map,marker));
+            for(var i = 0; i < markerArray.length; i++)
+            {
+              if(markerArray[i]==marker)
+              {
+                contentArray[i].open(map,marker);
+              }
+              else if(contentArray[i].opened == true)
+              {
+                contentArray[i].opened = false;
+              }
+            }
+
+            });
+            count++;
+          });
+      });
+    }
+    </script>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Four Leaf Clover 2018</p>
+      </div>
+    <!-- /.container -->
+    </footer>
+  </body>
+</html>
