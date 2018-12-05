@@ -46,7 +46,8 @@
     <div id="map"></div>
 
     <!-- User feedback -->
-    <span id="feedback">
+    <h2 class="container">Comments</h2>
+    <span id="feedback" class="border padding">
       <div class="container mt-1">
         <div class="media border p-1">
           <img src="Pic/img_avatar3.png" alt="John Doe" class="mr-1 mt-1 rounded-circle" style="width:60px;">
@@ -101,6 +102,7 @@
         </label>
       </div>
 
+      <br>
       <div class="form-group">
         <label for="comment" >Comment:</label>
         <textarea class="form-control" rows="5" id="comments" name="text"></textarea>
@@ -112,72 +114,88 @@
     <!-- *******************************On Submit button click************************************** -->
     <script>
       function submit() {
-        //Create an input type dynamically.   
-        var div = document.createElement("div"); // Container
-        var div2 = document.createElement("div"); // Media
-        var image = document.createElement("img"); // profile icon
-        var div3 = document.createElement("div"); // Media body
-        var name = document.createElement("h4"); // name
-        var comment = document.createElement("p") // comment
 
         var inputName = document.getElementById("usr"); // Get input name
-        var avatars = document.getElementById("avatarSelection") // Get avatar selected
         var inputComment = document.getElementById("comments") // Get input comment
 
-        //Assign different attributes to the Container.
-        div.classList.add("container");
-        div.classList.add("mt-1");
-
-        //Assign different attributes to the Media
-        div2.classList.add("media");
-        div2.classList.add("border");
-        div2.classList.add("p-1");
-
-        //Assign different attributes to Image
-        var radios = avatars.getElementsByTagName('input');
-        var images = avatars.getElementsByTagName('img');
-        var value;
-        var src;
-        for (var i = 0; i < radios.length; i++) {
-            if (radios[i].type === 'radio' && radios[i].checked) {
-                // get value, set checked flag or do whatever you need to
-                value = images[radios[i].value-1].src;
-            }
+        // Check if name is empty
+        if(inputName.value.length == 0 || inputComment.value.length == 0)
+        {
+          alert("Please enter a name or a comment!")
         }
-        image.src = value; //"Pic/img_avatar5.png";
-        image.alt = inputName.innerHtml; // get name
-        image.classList.add("mr-1");
-        image.classList.add("mt-1");
-        image.classList.add("rounded-circle");
-        image.style.width = "60px";
+        else
+        {
+          //Create an input type dynamically.   
+          var div = document.createElement("div"); // Container
+          var div2 = document.createElement("div"); // Media
+          var image = document.createElement("img"); // profile icon
+          var div3 = document.createElement("div"); // Media body
+          var name = document.createElement("h4"); // name
+          var comment = document.createElement("p") // comment
 
-        //Assign different attributes to Container body
-        div3.classList.add("media-body");
+          var avatars = document.getElementById("avatarSelection") // Get avatar selected
 
-        //Assign different attributes to display Name and date
-        var d = new Date();
-        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        var date = months[d.getMonth()] + " " + d.getDate().toString() + ", " + d.getFullYear().toString();
 
-        var string = " Posted on " + date;
+          //Assign different attributes to the Container.
+          div.classList.add("container");
+          div.classList.add("mt-1");
 
-        string = string.italics();
-        string = string.small();
-        name.innerHTML = inputName.value + string; // get name
+          //Assign different attributes to the Media
+          div2.classList.add("media");
+          div2.classList.add("border");
+          div2.classList.add("p-1");
+
+          //Assign different attributes to Image
+          var radios = avatars.getElementsByTagName('input');
+          var images = avatars.getElementsByTagName('img');
+          var value;
+          var src;
+          for (var i = 0; i < radios.length; i++) {
+              if (radios[i].type === 'radio' && radios[i].checked) {
+                  // get value, set checked flag or do whatever you need to
+                  value = images[radios[i].value-1].src;
+              }
+          }
+          image.src = value; //"Pic/img_avatar5.png";
+          image.alt = inputName.innerHtml; // get name
+          image.classList.add("mr-1");
+          image.classList.add("mt-1");
+          image.classList.add("rounded-circle");
+          image.style.width = "60px";
+
+          //Assign different attributes to Container body
+          div3.classList.add("media-body");
+
+          //Assign different attributes to display Name and date
+          var d = new Date();
+          var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+          var date = months[d.getMonth()] + " " + d.getDate().toString() + ", " + d.getFullYear().toString();
+
+          var string = " Posted on " + date;
+
+          string = string.italics();
+          string = string.small();
+          name.innerHTML = inputName.value + string; // get name
+
+          //Assign different attributes to display Comment
+          comment.innerText = inputComment.value; //get comment
+          
+          //Append the element in page (in span).
+          var container = document.getElementById("feedback");
+
+          div.appendChild(div2);
+          div2.appendChild(image);
+          div2.appendChild(div3);
+          div3.appendChild(name);
+          div3.appendChild(comment);
+          container.appendChild(div);
+          
+          // Clear the fields
+          inputName.value = "";
+          inputComment.value = "";
+        }
         
         
-        //Assign different attributes to display Comment
-        comment.innerText = inputComment.value; //get comment
-
-        //Append the element in page (in span).
-        var container = document.getElementById("feedback");
-
-        div.appendChild(div2);
-        div2.appendChild(image);
-        div2.appendChild(div3);
-        div3.appendChild(name);
-        div3.appendChild(comment);
-        container.appendChild(div);
       };
 
     </script>
